@@ -1,0 +1,42 @@
+pipeline{
+    agent any
+stages{
+        stage('cleaning'){
+            steps{
+                sh 'rm -rf *'
+            }
+        }
+        stage('CLONING'){
+            steps {
+                sh 'git clone -b sample https://github.com/chandu1103/sample.git'
+            }
+        }
+        stage('change directory'){
+            steps{
+                dir('sample') {
+                    //
+                }
+            }
+        }
+        stage('Docker Build') {
+      steps {
+        sh '''
+        cd sample
+        docker build -t calculator --no-cache .
+        '''
+      }
+    }
+ stage('removing exist container') {
+      steps {
+        sh '''
+        docker stop calculator
+        docker rm calculator'''
+      }
+    }
+ stage('Docker container') {
+      steps {
+        sh 'docker run --name calculator -d -p 1607:80 calculator'
+      }
+    }
+}
+}
