@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+   wordpress:
+     image: wordpress:latest
+     network_mode: "host"
+     restart: always
+     environment:
+       WORDPRESS_DB_HOST: 127.0.0.1:3306
+       WORDPRESS_DB_USER: wordpress
+       WORDPRESS_DB_PASSWORD: chandu
+       WORDPRESS_DB_NAME: wordpress
