@@ -9,7 +9,7 @@ services:
   react:
     container_name: react
     build:
-      context: ./react
+      context: ./react1
       dockerfile: Dockerfile
     volumes:
       - web_data:/app/build:rw
