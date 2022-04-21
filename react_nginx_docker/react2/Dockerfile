@@ -10,6 +10,6 @@ FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 COPY --from=build /app/build .
 RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx/nginx.conf /etc/nginx/conf.d
-EXPOSE 8022
+COPY nginx.conf /etc/nginx/conf.d
+EXPOSE 8024
 CMD ["nginx", "-g", "daemon off;"]
